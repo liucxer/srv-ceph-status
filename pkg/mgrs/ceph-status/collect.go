@@ -10,53 +10,28 @@ import (
 	"github.com/sirupsen/logrus"
 	"io/ioutil"
 	"os"
-	"sync"
 	"time"
 )
 
-var (
-	NodeList      []models.Node
-	NodeListMutex sync.Mutex
-)
 
-func ReFlashNodeList(ctx context.Context) error {
-	for {
-		time.Sleep(3 * time.Second)
-		nodeList, err := node.ListNode(ctx)
-		if err != nil {
-			continue
-		}
-
-		NodeListMutex.Lock()
-
-		NodeList = []models.Node{}
-		for _, nodeItem := range *nodeList {
-			NodeList = append(NodeList, nodeItem)
-		}
-		NodeListMutex.Unlock()
-	}
-	return nil
-}
-
-func StartCollectStatus(ctx context.Context) error {
+func StartCollectCephStatus(ctx context.Context)  {
 	for {
 		time.Sleep(time.Second)
-		NodeListMutex.Lock()
+		node.NodeListMutex.Lock()
 		var nodeList []models.Node
-		nodeList = NodeList
+		nodeList = node.NodeList
 
 		for _, nodeItem := range nodeList {
 			go CollectStatus(ctx, nodeItem)
 		}
-		NodeListMutex.Unlock()
+		node.NodeListMutex.Unlock()
 	}
-	return nil
 }
 
 func GetTmpCephConfFile(monIpAddr string) (string, error) {
 	tmpPath := os.TempDir() + uuid.New().String() + ".conf"
 	content := `[global]
-mon_host = `+ monIpAddr +`
+mon_host = ` + monIpAddr + `
 `
 	err := ioutil.WriteFile(tmpPath, []byte(content), os.ModePerm)
 	if err != nil {
@@ -67,7 +42,6 @@ mon_host = `+ monIpAddr +`
 }
 
 type CephConn struct {
-
 }
 
 var (
@@ -79,7 +53,7 @@ func CephConnInit(ipAddr string) error {
 	if err != nil {
 		return err
 	}
-	defer func() {_ = os.Remove(cephConfPath)}()
+	defer func() { _ = os.Remove(cephConfPath) }()
 
 	conn, err := rados.NewConn()
 	if err != nil {
@@ -102,9 +76,9 @@ func CephConnInit(ipAddr string) error {
 
 func CollectStatus(ctx context.Context, node models.Node) error {
 	var (
-		conn *rados.Conn
+		conn    *rados.Conn
 		isExist bool
-		err error
+		err     error
 	)
 	if conn, isExist = cephConnCache[node.Address]; !isExist {
 		err = CephConnInit(node.Address)
@@ -119,6 +93,7 @@ func CollectStatus(ctx context.Context, node models.Node) error {
 	if err != nil {
 		return err
 	}
+
 	buf, _, err := conn.MonCommand(command)
 	if err != nil {
 		return err

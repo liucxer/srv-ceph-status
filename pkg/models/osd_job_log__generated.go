@@ -10,13 +10,13 @@ import (
 	github_com_liucxer_srv_ceph_status_pkg_tools "github.com/liucxer/srv-ceph-status/pkg/tools"
 )
 
-func (CephStatus) PrimaryKey() []string {
+func (OSDJobLog) PrimaryKey() []string {
 	return []string{
 		"ID",
 	}
 }
 
-func (CephStatus) Indexes() github_com_go_courier_sqlx_v2_builder.Indexes {
+func (OSDJobLog) Indexes() github_com_go_courier_sqlx_v2_builder.Indexes {
 	return github_com_go_courier_sqlx_v2_builder.Indexes{
 		"idx_created_at": []string{
 			"CreatedAt",
@@ -24,20 +24,20 @@ func (CephStatus) Indexes() github_com_go_courier_sqlx_v2_builder.Indexes {
 	}
 }
 
-func (CephStatus) UniqueIndexUkCephStatusID() string {
-	return "uk_ceph_status_id"
+func (OSDJobLog) UniqueIndexUkOsdJobLogID() string {
+	return "uk_osd_job_log_id"
 }
 
-func (CephStatus) UniqueIndexes() github_com_go_courier_sqlx_v2_builder.Indexes {
+func (OSDJobLog) UniqueIndexes() github_com_go_courier_sqlx_v2_builder.Indexes {
 	return github_com_go_courier_sqlx_v2_builder.Indexes{
-		"uk_ceph_status_id": []string{
-			"CephStatusID",
+		"uk_osd_job_log_id": []string{
+			"OsdJobLogID",
 			"DeletedAt",
 		},
 	}
 }
 
-func (CephStatus) Comments() map[string]string {
+func (OSDJobLog) Comments() map[string]string {
 	return map[string]string{
 		"CreatedAt": "创建时间",
 		"DeletedAt": "删除时间",
@@ -46,28 +46,28 @@ func (CephStatus) Comments() map[string]string {
 	}
 }
 
-var CephStatusTable *github_com_go_courier_sqlx_v2_builder.Table
+var OSDJobLogTable *github_com_go_courier_sqlx_v2_builder.Table
 
 func init() {
-	CephStatusTable = DBCephStatus.Register(&CephStatus{})
+	OSDJobLogTable = DBCephStatus.Register(&OSDJobLog{})
 }
 
-type CephStatusIterator struct {
+type OSDJobLogIterator struct {
 }
 
-func (CephStatusIterator) New() interface{} {
-	return &CephStatus{}
+func (OSDJobLogIterator) New() interface{} {
+	return &OSDJobLog{}
 }
 
-func (CephStatusIterator) Resolve(v interface{}) *CephStatus {
-	return v.(*CephStatus)
+func (OSDJobLogIterator) Resolve(v interface{}) *OSDJobLog {
+	return v.(*OSDJobLog)
 }
 
-func (CephStatus) TableName() string {
-	return "t_ceph_status"
+func (OSDJobLog) TableName() string {
+	return "t_osd_job_log"
 }
 
-func (CephStatus) ColDescriptions() map[string][]string {
+func (OSDJobLog) ColDescriptions() map[string][]string {
 	return map[string][]string{
 		"CreatedAt": []string{
 			"创建时间",
@@ -84,107 +84,147 @@ func (CephStatus) ColDescriptions() map[string][]string {
 	}
 }
 
-func (CephStatus) FieldKeyID() string {
+func (OSDJobLog) FieldKeyID() string {
 	return "ID"
 }
 
-func (m *CephStatus) FieldID() *github_com_go_courier_sqlx_v2_builder.Column {
-	return CephStatusTable.F(m.FieldKeyID())
+func (m *OSDJobLog) FieldID() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeyID())
 }
 
-func (CephStatus) FieldKeyNodeID() string {
+func (OSDJobLog) FieldKeyNodeID() string {
 	return "NodeID"
 }
 
-func (m *CephStatus) FieldNodeID() *github_com_go_courier_sqlx_v2_builder.Column {
-	return CephStatusTable.F(m.FieldKeyNodeID())
+func (m *OSDJobLog) FieldNodeID() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeyNodeID())
 }
 
-func (CephStatus) FieldKeyCephStatusID() string {
-	return "CephStatusID"
+func (OSDJobLog) FieldKeyOsdJobLogID() string {
+	return "OsdJobLogID"
 }
 
-func (m *CephStatus) FieldCephStatusID() *github_com_go_courier_sqlx_v2_builder.Column {
-	return CephStatusTable.F(m.FieldKeyCephStatusID())
+func (m *OSDJobLog) FieldOsdJobLogID() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeyOsdJobLogID())
 }
 
-func (CephStatus) FieldKeyReadBytesSec() string {
-	return "ReadBytesSec"
+func (OSDJobLog) FieldKeyOSDID() string {
+	return "OSDID"
 }
 
-func (m *CephStatus) FieldReadBytesSec() *github_com_go_courier_sqlx_v2_builder.Column {
-	return CephStatusTable.F(m.FieldKeyReadBytesSec())
+func (m *OSDJobLog) FieldOSDID() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeyOSDID())
 }
 
-func (CephStatus) FieldKeyReadOpPerSec() string {
-	return "ReadOpPerSec"
+func (OSDJobLog) FieldKeyContent() string {
+	return "Content"
 }
 
-func (m *CephStatus) FieldReadOpPerSec() *github_com_go_courier_sqlx_v2_builder.Column {
-	return CephStatusTable.F(m.FieldKeyReadOpPerSec())
+func (m *OSDJobLog) FieldContent() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeyContent())
 }
 
-func (CephStatus) FieldKeyRecoveringBytesPerSec() string {
-	return "RecoveringBytesPerSec"
+func (OSDJobLog) FieldKeyLogTime() string {
+	return "LogTime"
 }
 
-func (m *CephStatus) FieldRecoveringBytesPerSec() *github_com_go_courier_sqlx_v2_builder.Column {
-	return CephStatusTable.F(m.FieldKeyRecoveringBytesPerSec())
+func (m *OSDJobLog) FieldLogTime() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeyLogTime())
 }
 
-func (CephStatus) FieldKeyWriteBytesSec() string {
-	return "WriteBytesSec"
+func (OSDJobLog) FieldKeyJobID() string {
+	return "JobID"
 }
 
-func (m *CephStatus) FieldWriteBytesSec() *github_com_go_courier_sqlx_v2_builder.Column {
-	return CephStatusTable.F(m.FieldKeyWriteBytesSec())
+func (m *OSDJobLog) FieldJobID() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeyJobID())
 }
 
-func (CephStatus) FieldKeyWriteOpPerSec() string {
-	return "WriteOpPerSec"
+func (OSDJobLog) FieldKeyGlobalID() string {
+	return "GlobalID"
 }
 
-func (m *CephStatus) FieldWriteOpPerSec() *github_com_go_courier_sqlx_v2_builder.Column {
-	return CephStatusTable.F(m.FieldKeyWriteOpPerSec())
+func (m *OSDJobLog) FieldGlobalID() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeyGlobalID())
 }
 
-func (CephStatus) FieldKeyCreatedAt() string {
+func (OSDJobLog) FieldKeyJobType() string {
+	return "JobType"
+}
+
+func (m *OSDJobLog) FieldJobType() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeyJobType())
+}
+
+func (OSDJobLog) FieldKeySize() string {
+	return "Size"
+}
+
+func (m *OSDJobLog) FieldSize() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeySize())
+}
+
+func (OSDJobLog) FieldKeyExpectCost() string {
+	return "ExpectCost"
+}
+
+func (m *OSDJobLog) FieldExpectCost() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeyExpectCost())
+}
+
+func (OSDJobLog) FieldKeyOutQueueActualCost() string {
+	return "OutQueueActualCost"
+}
+
+func (m *OSDJobLog) FieldOutQueueActualCost() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeyOutQueueActualCost())
+}
+
+func (OSDJobLog) FieldKeyActualCost() string {
+	return "ActualCost"
+}
+
+func (m *OSDJobLog) FieldActualCost() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeyActualCost())
+}
+
+func (OSDJobLog) FieldKeyCreatedAt() string {
 	return "CreatedAt"
 }
 
-func (m *CephStatus) FieldCreatedAt() *github_com_go_courier_sqlx_v2_builder.Column {
-	return CephStatusTable.F(m.FieldKeyCreatedAt())
+func (m *OSDJobLog) FieldCreatedAt() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeyCreatedAt())
 }
 
-func (CephStatus) FieldKeyUpdatedAt() string {
+func (OSDJobLog) FieldKeyUpdatedAt() string {
 	return "UpdatedAt"
 }
 
-func (m *CephStatus) FieldUpdatedAt() *github_com_go_courier_sqlx_v2_builder.Column {
-	return CephStatusTable.F(m.FieldKeyUpdatedAt())
+func (m *OSDJobLog) FieldUpdatedAt() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeyUpdatedAt())
 }
 
-func (CephStatus) FieldKeyDeletedAt() string {
+func (OSDJobLog) FieldKeyDeletedAt() string {
 	return "DeletedAt"
 }
 
-func (m *CephStatus) FieldDeletedAt() *github_com_go_courier_sqlx_v2_builder.Column {
-	return CephStatusTable.F(m.FieldKeyDeletedAt())
+func (m *OSDJobLog) FieldDeletedAt() *github_com_go_courier_sqlx_v2_builder.Column {
+	return OSDJobLogTable.F(m.FieldKeyDeletedAt())
 }
 
-func (CephStatus) ColRelations() map[string][]string {
+func (OSDJobLog) ColRelations() map[string][]string {
 	return map[string][]string{}
 }
 
-func (m *CephStatus) IndexFieldNames() []string {
+func (m *OSDJobLog) IndexFieldNames() []string {
 	return []string{
-		"CephStatusID",
 		"CreatedAt",
 		"ID",
+		"OsdJobLogID",
 	}
 }
 
-func (m *CephStatus) ConditionByStruct(db github_com_go_courier_sqlx_v2.DBExecutor) github_com_go_courier_sqlx_v2_builder.SqlCondition {
+func (m *OSDJobLog) ConditionByStruct(db github_com_go_courier_sqlx_v2.DBExecutor) github_com_go_courier_sqlx_v2_builder.SqlCondition {
 	table := db.T(m)
 	fieldValues := github_com_go_courier_sqlx_v2_builder.FieldValuesFromStructByNonZero(m)
 
@@ -211,7 +251,7 @@ func (m *CephStatus) ConditionByStruct(db github_com_go_courier_sqlx_v2.DBExecut
 	return condition
 }
 
-func (m *CephStatus) Create(db github_com_go_courier_sqlx_v2.DBExecutor) error {
+func (m *OSDJobLog) Create(db github_com_go_courier_sqlx_v2.DBExecutor) error {
 
 	if m.CreatedAt.IsZero() {
 		m.CreatedAt = github_com_go_courier_sqlx_v2_datatypes.Timestamp(time.Now())
@@ -226,7 +266,7 @@ func (m *CephStatus) Create(db github_com_go_courier_sqlx_v2.DBExecutor) error {
 
 }
 
-func (m *CephStatus) CreateOnDuplicateWithUpdateFields(db github_com_go_courier_sqlx_v2.DBExecutor, updateFields []string) error {
+func (m *OSDJobLog) CreateOnDuplicateWithUpdateFields(db github_com_go_courier_sqlx_v2.DBExecutor, updateFields []string) error {
 
 	if len(updateFields) == 0 {
 		panic(fmt.Errorf("must have update fields"))
@@ -296,21 +336,21 @@ func (m *CephStatus) CreateOnDuplicateWithUpdateFields(db github_com_go_courier_
 
 }
 
-func (m *CephStatus) DeleteByStruct(db github_com_go_courier_sqlx_v2.DBExecutor) error {
+func (m *OSDJobLog) DeleteByStruct(db github_com_go_courier_sqlx_v2.DBExecutor) error {
 
 	_, err := db.ExecExpr(
 		github_com_go_courier_sqlx_v2_builder.Delete().
 			From(
 				db.T(m),
 				github_com_go_courier_sqlx_v2_builder.Where(m.ConditionByStruct(db)),
-				github_com_go_courier_sqlx_v2_builder.Comment("CephStatus.DeleteByStruct"),
+				github_com_go_courier_sqlx_v2_builder.Comment("OSDJobLog.DeleteByStruct"),
 			),
 	)
 
 	return err
 }
 
-func (m *CephStatus) FetchByID(db github_com_go_courier_sqlx_v2.DBExecutor) error {
+func (m *OSDJobLog) FetchByID(db github_com_go_courier_sqlx_v2.DBExecutor) error {
 
 	table := db.T(m)
 
@@ -322,7 +362,7 @@ func (m *CephStatus) FetchByID(db github_com_go_courier_sqlx_v2.DBExecutor) erro
 					table.F("ID").Eq(m.ID),
 					table.F("DeletedAt").Eq(m.DeletedAt),
 				)),
-				github_com_go_courier_sqlx_v2_builder.Comment("CephStatus.FetchByID"),
+				github_com_go_courier_sqlx_v2_builder.Comment("OSDJobLog.FetchByID"),
 			),
 		m,
 	)
@@ -330,7 +370,7 @@ func (m *CephStatus) FetchByID(db github_com_go_courier_sqlx_v2.DBExecutor) erro
 	return err
 }
 
-func (m *CephStatus) UpdateByIDWithMap(db github_com_go_courier_sqlx_v2.DBExecutor, fieldValues github_com_go_courier_sqlx_v2_builder.FieldValues) error {
+func (m *OSDJobLog) UpdateByIDWithMap(db github_com_go_courier_sqlx_v2.DBExecutor, fieldValues github_com_go_courier_sqlx_v2_builder.FieldValues) error {
 
 	if _, ok := fieldValues["UpdatedAt"]; !ok {
 		fieldValues["UpdatedAt"] = github_com_go_courier_sqlx_v2_datatypes.Timestamp(time.Now())
@@ -345,7 +385,7 @@ func (m *CephStatus) UpdateByIDWithMap(db github_com_go_courier_sqlx_v2.DBExecut
 					table.F("ID").Eq(m.ID),
 					table.F("DeletedAt").Eq(m.DeletedAt),
 				),
-				github_com_go_courier_sqlx_v2_builder.Comment("CephStatus.UpdateByIDWithMap"),
+				github_com_go_courier_sqlx_v2_builder.Comment("OSDJobLog.UpdateByIDWithMap"),
 			).
 			Set(table.AssignmentsByFieldValues(fieldValues)...),
 	)
@@ -363,14 +403,14 @@ func (m *CephStatus) UpdateByIDWithMap(db github_com_go_courier_sqlx_v2.DBExecut
 
 }
 
-func (m *CephStatus) UpdateByIDWithStruct(db github_com_go_courier_sqlx_v2.DBExecutor, zeroFields ...string) error {
+func (m *OSDJobLog) UpdateByIDWithStruct(db github_com_go_courier_sqlx_v2.DBExecutor, zeroFields ...string) error {
 
 	fieldValues := github_com_go_courier_sqlx_v2_builder.FieldValuesFromStructByNonZero(m, zeroFields...)
 	return m.UpdateByIDWithMap(db, fieldValues)
 
 }
 
-func (m *CephStatus) FetchByIDForUpdate(db github_com_go_courier_sqlx_v2.DBExecutor) error {
+func (m *OSDJobLog) FetchByIDForUpdate(db github_com_go_courier_sqlx_v2.DBExecutor) error {
 
 	table := db.T(m)
 
@@ -383,7 +423,7 @@ func (m *CephStatus) FetchByIDForUpdate(db github_com_go_courier_sqlx_v2.DBExecu
 					table.F("DeletedAt").Eq(m.DeletedAt),
 				)),
 				github_com_go_courier_sqlx_v2_builder.ForUpdate(),
-				github_com_go_courier_sqlx_v2_builder.Comment("CephStatus.FetchByIDForUpdate"),
+				github_com_go_courier_sqlx_v2_builder.Comment("OSDJobLog.FetchByIDForUpdate"),
 			),
 		m,
 	)
@@ -391,7 +431,7 @@ func (m *CephStatus) FetchByIDForUpdate(db github_com_go_courier_sqlx_v2.DBExecu
 	return err
 }
 
-func (m *CephStatus) DeleteByID(db github_com_go_courier_sqlx_v2.DBExecutor) error {
+func (m *OSDJobLog) DeleteByID(db github_com_go_courier_sqlx_v2.DBExecutor) error {
 
 	table := db.T(m)
 
@@ -402,13 +442,13 @@ func (m *CephStatus) DeleteByID(db github_com_go_courier_sqlx_v2.DBExecutor) err
 					table.F("ID").Eq(m.ID),
 					table.F("DeletedAt").Eq(m.DeletedAt),
 				)),
-				github_com_go_courier_sqlx_v2_builder.Comment("CephStatus.DeleteByID"),
+				github_com_go_courier_sqlx_v2_builder.Comment("OSDJobLog.DeleteByID"),
 			))
 
 	return err
 }
 
-func (m *CephStatus) SoftDeleteByID(db github_com_go_courier_sqlx_v2.DBExecutor) error {
+func (m *OSDJobLog) SoftDeleteByID(db github_com_go_courier_sqlx_v2.DBExecutor) error {
 
 	table := db.T(m)
 
@@ -428,7 +468,7 @@ func (m *CephStatus) SoftDeleteByID(db github_com_go_courier_sqlx_v2.DBExecutor)
 					table.F("ID").Eq(m.ID),
 					table.F("DeletedAt").Eq(m.DeletedAt),
 				),
-				github_com_go_courier_sqlx_v2_builder.Comment("CephStatus.SoftDeleteByID"),
+				github_com_go_courier_sqlx_v2_builder.Comment("OSDJobLog.SoftDeleteByID"),
 			).
 			Set(table.AssignmentsByFieldValues(fieldValues)...),
 	)
@@ -437,7 +477,7 @@ func (m *CephStatus) SoftDeleteByID(db github_com_go_courier_sqlx_v2.DBExecutor)
 
 }
 
-func (m *CephStatus) FetchByCephStatusID(db github_com_go_courier_sqlx_v2.DBExecutor) error {
+func (m *OSDJobLog) FetchByOsdJobLogID(db github_com_go_courier_sqlx_v2.DBExecutor) error {
 
 	table := db.T(m)
 
@@ -446,10 +486,10 @@ func (m *CephStatus) FetchByCephStatusID(db github_com_go_courier_sqlx_v2.DBExec
 			From(
 				db.T(m),
 				github_com_go_courier_sqlx_v2_builder.Where(github_com_go_courier_sqlx_v2_builder.And(
-					table.F("CephStatusID").Eq(m.CephStatusID),
+					table.F("OsdJobLogID").Eq(m.OsdJobLogID),
 					table.F("DeletedAt").Eq(m.DeletedAt),
 				)),
-				github_com_go_courier_sqlx_v2_builder.Comment("CephStatus.FetchByCephStatusID"),
+				github_com_go_courier_sqlx_v2_builder.Comment("OSDJobLog.FetchByOsdJobLogID"),
 			),
 		m,
 	)
@@ -457,7 +497,7 @@ func (m *CephStatus) FetchByCephStatusID(db github_com_go_courier_sqlx_v2.DBExec
 	return err
 }
 
-func (m *CephStatus) UpdateByCephStatusIDWithMap(db github_com_go_courier_sqlx_v2.DBExecutor, fieldValues github_com_go_courier_sqlx_v2_builder.FieldValues) error {
+func (m *OSDJobLog) UpdateByOsdJobLogIDWithMap(db github_com_go_courier_sqlx_v2.DBExecutor, fieldValues github_com_go_courier_sqlx_v2_builder.FieldValues) error {
 
 	if _, ok := fieldValues["UpdatedAt"]; !ok {
 		fieldValues["UpdatedAt"] = github_com_go_courier_sqlx_v2_datatypes.Timestamp(time.Now())
@@ -469,10 +509,10 @@ func (m *CephStatus) UpdateByCephStatusIDWithMap(db github_com_go_courier_sqlx_v
 		github_com_go_courier_sqlx_v2_builder.Update(db.T(m)).
 			Where(
 				github_com_go_courier_sqlx_v2_builder.And(
-					table.F("CephStatusID").Eq(m.CephStatusID),
+					table.F("OsdJobLogID").Eq(m.OsdJobLogID),
 					table.F("DeletedAt").Eq(m.DeletedAt),
 				),
-				github_com_go_courier_sqlx_v2_builder.Comment("CephStatus.UpdateByCephStatusIDWithMap"),
+				github_com_go_courier_sqlx_v2_builder.Comment("OSDJobLog.UpdateByOsdJobLogIDWithMap"),
 			).
 			Set(table.AssignmentsByFieldValues(fieldValues)...),
 	)
@@ -483,21 +523,21 @@ func (m *CephStatus) UpdateByCephStatusIDWithMap(db github_com_go_courier_sqlx_v
 
 	rowsAffected, _ := result.RowsAffected()
 	if rowsAffected == 0 {
-		return m.FetchByCephStatusID(db)
+		return m.FetchByOsdJobLogID(db)
 	}
 
 	return nil
 
 }
 
-func (m *CephStatus) UpdateByCephStatusIDWithStruct(db github_com_go_courier_sqlx_v2.DBExecutor, zeroFields ...string) error {
+func (m *OSDJobLog) UpdateByOsdJobLogIDWithStruct(db github_com_go_courier_sqlx_v2.DBExecutor, zeroFields ...string) error {
 
 	fieldValues := github_com_go_courier_sqlx_v2_builder.FieldValuesFromStructByNonZero(m, zeroFields...)
-	return m.UpdateByCephStatusIDWithMap(db, fieldValues)
+	return m.UpdateByOsdJobLogIDWithMap(db, fieldValues)
 
 }
 
-func (m *CephStatus) FetchByCephStatusIDForUpdate(db github_com_go_courier_sqlx_v2.DBExecutor) error {
+func (m *OSDJobLog) FetchByOsdJobLogIDForUpdate(db github_com_go_courier_sqlx_v2.DBExecutor) error {
 
 	table := db.T(m)
 
@@ -506,11 +546,11 @@ func (m *CephStatus) FetchByCephStatusIDForUpdate(db github_com_go_courier_sqlx_
 			From(
 				db.T(m),
 				github_com_go_courier_sqlx_v2_builder.Where(github_com_go_courier_sqlx_v2_builder.And(
-					table.F("CephStatusID").Eq(m.CephStatusID),
+					table.F("OsdJobLogID").Eq(m.OsdJobLogID),
 					table.F("DeletedAt").Eq(m.DeletedAt),
 				)),
 				github_com_go_courier_sqlx_v2_builder.ForUpdate(),
-				github_com_go_courier_sqlx_v2_builder.Comment("CephStatus.FetchByCephStatusIDForUpdate"),
+				github_com_go_courier_sqlx_v2_builder.Comment("OSDJobLog.FetchByOsdJobLogIDForUpdate"),
 			),
 		m,
 	)
@@ -518,7 +558,7 @@ func (m *CephStatus) FetchByCephStatusIDForUpdate(db github_com_go_courier_sqlx_
 	return err
 }
 
-func (m *CephStatus) DeleteByCephStatusID(db github_com_go_courier_sqlx_v2.DBExecutor) error {
+func (m *OSDJobLog) DeleteByOsdJobLogID(db github_com_go_courier_sqlx_v2.DBExecutor) error {
 
 	table := db.T(m)
 
@@ -526,16 +566,16 @@ func (m *CephStatus) DeleteByCephStatusID(db github_com_go_courier_sqlx_v2.DBExe
 		github_com_go_courier_sqlx_v2_builder.Delete().
 			From(db.T(m),
 				github_com_go_courier_sqlx_v2_builder.Where(github_com_go_courier_sqlx_v2_builder.And(
-					table.F("CephStatusID").Eq(m.CephStatusID),
+					table.F("OsdJobLogID").Eq(m.OsdJobLogID),
 					table.F("DeletedAt").Eq(m.DeletedAt),
 				)),
-				github_com_go_courier_sqlx_v2_builder.Comment("CephStatus.DeleteByCephStatusID"),
+				github_com_go_courier_sqlx_v2_builder.Comment("OSDJobLog.DeleteByOsdJobLogID"),
 			))
 
 	return err
 }
 
-func (m *CephStatus) SoftDeleteByCephStatusID(db github_com_go_courier_sqlx_v2.DBExecutor) error {
+func (m *OSDJobLog) SoftDeleteByOsdJobLogID(db github_com_go_courier_sqlx_v2.DBExecutor) error {
 
 	table := db.T(m)
 
@@ -552,10 +592,10 @@ func (m *CephStatus) SoftDeleteByCephStatusID(db github_com_go_courier_sqlx_v2.D
 		github_com_go_courier_sqlx_v2_builder.Update(db.T(m)).
 			Where(
 				github_com_go_courier_sqlx_v2_builder.And(
-					table.F("CephStatusID").Eq(m.CephStatusID),
+					table.F("OsdJobLogID").Eq(m.OsdJobLogID),
 					table.F("DeletedAt").Eq(m.DeletedAt),
 				),
-				github_com_go_courier_sqlx_v2_builder.Comment("CephStatus.SoftDeleteByCephStatusID"),
+				github_com_go_courier_sqlx_v2_builder.Comment("OSDJobLog.SoftDeleteByOsdJobLogID"),
 			).
 			Set(table.AssignmentsByFieldValues(fieldValues)...),
 	)
@@ -564,9 +604,9 @@ func (m *CephStatus) SoftDeleteByCephStatusID(db github_com_go_courier_sqlx_v2.D
 
 }
 
-func (m *CephStatus) List(db github_com_go_courier_sqlx_v2.DBExecutor, condition github_com_go_courier_sqlx_v2_builder.SqlCondition, additions ...github_com_go_courier_sqlx_v2_builder.Addition) ([]CephStatus, error) {
+func (m *OSDJobLog) List(db github_com_go_courier_sqlx_v2.DBExecutor, condition github_com_go_courier_sqlx_v2_builder.SqlCondition, additions ...github_com_go_courier_sqlx_v2_builder.Addition) ([]OSDJobLog, error) {
 
-	list := make([]CephStatus, 0)
+	list := make([]OSDJobLog, 0)
 
 	table := db.T(m)
 	_ = table
@@ -575,7 +615,7 @@ func (m *CephStatus) List(db github_com_go_courier_sqlx_v2.DBExecutor, condition
 
 	finalAdditions := []github_com_go_courier_sqlx_v2_builder.Addition{
 		github_com_go_courier_sqlx_v2_builder.Where(condition),
-		github_com_go_courier_sqlx_v2_builder.Comment("CephStatus.List"),
+		github_com_go_courier_sqlx_v2_builder.Comment("OSDJobLog.List"),
 	}
 
 	if len(additions) > 0 {
@@ -592,7 +632,7 @@ func (m *CephStatus) List(db github_com_go_courier_sqlx_v2.DBExecutor, condition
 
 }
 
-func (m *CephStatus) Count(db github_com_go_courier_sqlx_v2.DBExecutor, condition github_com_go_courier_sqlx_v2_builder.SqlCondition, additions ...github_com_go_courier_sqlx_v2_builder.Addition) (int, error) {
+func (m *OSDJobLog) Count(db github_com_go_courier_sqlx_v2.DBExecutor, condition github_com_go_courier_sqlx_v2_builder.SqlCondition, additions ...github_com_go_courier_sqlx_v2_builder.Addition) (int, error) {
 
 	count := -1
 
@@ -603,7 +643,7 @@ func (m *CephStatus) Count(db github_com_go_courier_sqlx_v2.DBExecutor, conditio
 
 	finalAdditions := []github_com_go_courier_sqlx_v2_builder.Addition{
 		github_com_go_courier_sqlx_v2_builder.Where(condition),
-		github_com_go_courier_sqlx_v2_builder.Comment("CephStatus.Count"),
+		github_com_go_courier_sqlx_v2_builder.Comment("OSDJobLog.Count"),
 	}
 
 	if len(additions) > 0 {
@@ -622,21 +662,7 @@ func (m *CephStatus) Count(db github_com_go_courier_sqlx_v2.DBExecutor, conditio
 
 }
 
-func (m *CephStatus) BatchFetchByCephStatusIDList(db github_com_go_courier_sqlx_v2.DBExecutor, values []github_com_liucxer_srv_ceph_status_pkg_tools.SFID) ([]CephStatus, error) {
-
-	if len(values) == 0 {
-		return nil, nil
-	}
-
-	table := db.T(m)
-
-	condition := table.F("CephStatusID").In(values)
-
-	return m.List(db, condition)
-
-}
-
-func (m *CephStatus) BatchFetchByCreatedAtList(db github_com_go_courier_sqlx_v2.DBExecutor, values []github_com_go_courier_sqlx_v2_datatypes.Timestamp) ([]CephStatus, error) {
+func (m *OSDJobLog) BatchFetchByCreatedAtList(db github_com_go_courier_sqlx_v2.DBExecutor, values []github_com_go_courier_sqlx_v2_datatypes.Timestamp) ([]OSDJobLog, error) {
 
 	if len(values) == 0 {
 		return nil, nil
@@ -650,7 +676,7 @@ func (m *CephStatus) BatchFetchByCreatedAtList(db github_com_go_courier_sqlx_v2.
 
 }
 
-func (m *CephStatus) BatchFetchByIDList(db github_com_go_courier_sqlx_v2.DBExecutor, values []uint64) ([]CephStatus, error) {
+func (m *OSDJobLog) BatchFetchByIDList(db github_com_go_courier_sqlx_v2.DBExecutor, values []uint64) ([]OSDJobLog, error) {
 
 	if len(values) == 0 {
 		return nil, nil
@@ -659,6 +685,20 @@ func (m *CephStatus) BatchFetchByIDList(db github_com_go_courier_sqlx_v2.DBExecu
 	table := db.T(m)
 
 	condition := table.F("ID").In(values)
+
+	return m.List(db, condition)
+
+}
+
+func (m *OSDJobLog) BatchFetchByOsdJobLogIDList(db github_com_go_courier_sqlx_v2.DBExecutor, values []github_com_liucxer_srv_ceph_status_pkg_tools.SFID) ([]OSDJobLog, error) {
+
+	if len(values) == 0 {
+		return nil, nil
+	}
+
+	table := db.T(m)
+
+	condition := table.F("OsdJobLogID").In(values)
 
 	return m.List(db, condition)
 

@@ -1,11 +1,10 @@
 package node
 
 import (
-	"github.com/liucxer/srv-ceph-status/pkg/mgrs/node"
-	"github.com/liucxer/srv-ceph-status/pkg/models"
 	"context"
 	"github.com/go-courier/courier"
 	"github.com/go-courier/httptransport/httpx"
+	"github.com/liucxer/srv-ceph-status/pkg/mgrs/node"
 )
 
 func init() {
@@ -14,9 +13,9 @@ func init() {
 
 type CreateNode struct {
 	httpx.MethodPost `summary:"创建节点" path:""`
-	models.NodeBody  `in:"body"`
+	node.CreateNodeBody  `in:"body"`
 }
 
 func (req *CreateNode) Output(ctx context.Context) (interface{}, error) {
-	return node.CreateNode(ctx, req.NodeBody)
+	return node.CreateNode(ctx, req.CreateNodeBody)
 }

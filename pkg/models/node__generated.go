@@ -16,6 +16,14 @@ func (Node) PrimaryKey() []string {
 	}
 }
 
+func (Node) Indexes() github_com_go_courier_sqlx_v2_builder.Indexes {
+	return github_com_go_courier_sqlx_v2_builder.Indexes{
+		"idx_created_at": []string{
+			"CreatedAt",
+		},
+	}
+}
+
 func (Node) UniqueIndexUkNodeID() string {
 	return "uk_node_id"
 }
@@ -100,6 +108,14 @@ func (m *Node) FieldAddress() *github_com_go_courier_sqlx_v2_builder.Column {
 	return NodeTable.F(m.FieldKeyAddress())
 }
 
+func (Node) FieldKeyAddressList() string {
+	return "AddressList"
+}
+
+func (m *Node) FieldAddressList() *github_com_go_courier_sqlx_v2_builder.Column {
+	return NodeTable.F(m.FieldKeyAddressList())
+}
+
 func (Node) FieldKeyCreatedAt() string {
 	return "CreatedAt"
 }
@@ -130,6 +146,7 @@ func (Node) ColRelations() map[string][]string {
 
 func (m *Node) IndexFieldNames() []string {
 	return []string{
+		"CreatedAt",
 		"ID",
 		"NodeID",
 	}
@@ -570,6 +587,20 @@ func (m *Node) Count(db github_com_go_courier_sqlx_v2.DBExecutor, condition gith
 	)
 
 	return count, err
+
+}
+
+func (m *Node) BatchFetchByCreatedAtList(db github_com_go_courier_sqlx_v2.DBExecutor, values []github_com_go_courier_sqlx_v2_datatypes.Timestamp) ([]Node, error) {
+
+	if len(values) == 0 {
+		return nil, nil
+	}
+
+	table := db.T(m)
+
+	condition := table.F("CreatedAt").In(values)
+
+	return m.List(db, condition)
 
 }
 

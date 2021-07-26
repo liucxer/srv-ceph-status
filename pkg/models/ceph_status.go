@@ -5,6 +5,7 @@ import "github.com/liucxer/srv-ceph-status/pkg/tools"
 //go:generate codegen gen model2 CephStatus --database DBCephStatus --with-comments
 // @def primary ID
 // @def unique_index uk_ceph_status_id CephStatusID
+// @def index idx_created_at CreatedAt
 type CephStatus struct {
 	PrimaryID
 	RefNodeID

@@ -1,14 +1,14 @@
 package global
 
 import (
-	"github.com/liucxer/srv-ceph-status/pkg/models"
-	"github.com/liucxer/srv-ceph-status/pkg/utils/db"
-	"github.com/liucxer/srv-ceph-status/pkg/utils/idgen"
 	"github.com/go-courier/courier"
 	"github.com/go-courier/sqlx/v2/migration"
 	"github.com/liucxer/confmiddleware"
 	"github.com/liucxer/confmiddleware/appinfo"
 	"github.com/liucxer/confmiddleware/confhttp"
+	"github.com/liucxer/srv-ceph-status/pkg/models"
+	"github.com/liucxer/srv-ceph-status/pkg/utils/db"
+	"github.com/liucxer/srv-ceph-status/pkg/utils/idgen"
 	"github.com/sirupsen/logrus"
 )
 

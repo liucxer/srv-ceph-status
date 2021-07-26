@@ -1,11 +1,11 @@
 package ceph_status
 
 import (
-	ceph_status "github.com/liucxer/srv-ceph-status/pkg/mgrs/ceph-status"
 	"context"
 	"github.com/go-courier/courier"
 	"github.com/go-courier/httptransport/httpx"
 	"github.com/go-courier/sqlx-pg/pgbuilder"
+	ceph_status "github.com/liucxer/srv-ceph-status/pkg/mgrs/ceph-status"
 )
 
 func init() {

@@ -2,15 +2,46 @@ package node
 
 import (
 	"context"
+	"encoding/json"
 	"github.com/go-courier/httptransport/__examples__/server/pkg/errors"
 	"github.com/go-courier/sqlx/v2"
 	"github.com/liucxer/srv-ceph-status/pkg/models"
 	"github.com/liucxer/srv-ceph-status/pkg/tools"
 	"github.com/liucxer/srv-ceph-status/pkg/utils/db"
 	"github.com/liucxer/srv-ceph-status/pkg/utils/idgen"
+	"sync"
+	"time"
 )
 
-func CreateNode(ctx context.Context, body models.NodeBody) (*models.Node, error) {
+var (
+	NodeList      []models.Node
+	NodeListMutex sync.Mutex
+)
+
+func ReFlashNodeList(ctx context.Context)  {
+	for {
+		time.Sleep(3 * time.Second)
+		nodeList, err := ListNode(ctx)
+		if err != nil {
+			continue
+		}
+
+		NodeListMutex.Lock()
+
+		NodeList = []models.Node{}
+		for _, nodeItem := range *nodeList {
+			NodeList = append(NodeList, nodeItem)
+		}
+		NodeListMutex.Unlock()
+	}
+}
+
+type CreateNodeBody struct {
+	Address     string `db:"f_address" json:"address"`
+	AddressList []string `db:"f_address_list" json:"addressList"`
+}
+
+func CreateNode(ctx context.Context, body CreateNodeBody) (*models.Node, error) {
 	taskID, err := idgen.IDGenFromContext(ctx).ID()
 	if err != nil {
 		return nil, err
@@ -18,7 +49,13 @@ func CreateNode(ctx context.Context, body models.NodeBody) (*models.Node, error)
 
 	object := models.Node{}
 	object.NodeID = tools.SFID(taskID)
-	object.NodeBody = body
+	object.Address = body.Address
+	bts, err := json.Marshal(body.AddressList)
+	if err != nil {
+		return nil, err
+	}
+	object.AddressList = string(bts)
+
 	if err = object.Create(db.DBExecutorFromContext(ctx)); err != nil {
 		if sqlx.DBErr(err).IsConflict() {
 			return nil, err

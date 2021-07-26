@@ -10,7 +10,7 @@ func TestCollectStatus(t *testing.T) {
 	cluster, err := cluster_client.NewCluster([]string{"10.0.20.27"})
 	require.NoError(t, err)
 
-	for i :=0; i < 100000;i++ {
+	for i := 0; i < 100000; i++ {
 		_, err = cluster.CephStatus(1)
 	}
 
