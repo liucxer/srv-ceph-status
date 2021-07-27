@@ -107,7 +107,7 @@
             "schema": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgToolsSFID"
+                  "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgToolsSFID"
                 },
                 {
                   "x-go-field-name": "NodeID",
@@ -168,7 +168,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgModelsCephStatus"
+                    "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgModelsCephStatus"
                   }
                 }
               }
@@ -235,7 +235,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgModelsNode"
+                    "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgModelsNode"
                   }
                 }
               }
@@ -256,10 +256,10 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgModelsNodeBody"
+                    "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgMgrsNodeCreateNodeBody"
                   },
                   {
-                    "x-go-field-name": "NodeBody"
+                    "x-go-field-name": "CreateNodeBody"
                   }
                 ]
               }
@@ -272,7 +272,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgModelsNode"
+                  "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgModelsNode"
                 }
               }
             }
@@ -296,210 +296,6 @@
   },
   "components": {
     "schemas": {
-      "100714LiuChangxiSrvCephStatusPkgModelsCephStatus": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgModelsPrimaryID"
-          },
-          {
-            "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgModelsRefNodeID"
-          },
-          {
-            "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgModelsRefCephStatusID"
-          },
-          {
-            "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgModelsCephStatusBody"
-          },
-          {
-            "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgModelsOperationTimesWithDeletedAt"
-          },
-          {
-            "type": "object",
-            "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.CephStatus",
-            "x-id": "100714LiuChangxiSrvCephStatusPkgModelsCephStatus"
-          }
-        ]
-      },
-      "100714LiuChangxiSrvCephStatusPkgModelsCephStatusBody": {
-        "type": "object",
-        "properties": {
-          "readBytesSec": {
-            "type": "number",
-            "format": "double",
-            "x-go-field-name": "ReadBytesSec",
-            "x-tag-json": "readBytesSec"
-          },
-          "readOpPerSec": {
-            "type": "number",
-            "format": "double",
-            "x-go-field-name": "ReadOpPerSec",
-            "x-tag-json": "readOpPerSec"
-          },
-          "recoveringBytesPerSec": {
-            "type": "number",
-            "format": "double",
-            "x-go-field-name": "RecoveringBytesPerSec",
-            "x-tag-json": "recoveringBytesPerSec"
-          },
-          "writeBytesSec": {
-            "type": "number",
-            "format": "double",
-            "x-go-field-name": "WriteBytesSec",
-            "x-tag-json": "writeBytesSec"
-          },
-          "writeOpPerSec": {
-            "type": "number",
-            "format": "double",
-            "x-go-field-name": "WriteOpPerSec",
-            "x-tag-json": "writeOpPerSec"
-          }
-        },
-        "required": [
-          "readBytesSec",
-          "readOpPerSec",
-          "recoveringBytesPerSec",
-          "writeBytesSec",
-          "writeOpPerSec"
-        ],
-        "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.CephStatusBody",
-        "x-id": "100714LiuChangxiSrvCephStatusPkgModelsCephStatusBody"
-      },
-      "100714LiuChangxiSrvCephStatusPkgModelsNode": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgModelsPrimaryID"
-          },
-          {
-            "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgModelsRefNodeID"
-          },
-          {
-            "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgModelsNodeBody"
-          },
-          {
-            "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgModelsOperationTimesWithDeletedAt"
-          },
-          {
-            "type": "object",
-            "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.Node",
-            "x-id": "100714LiuChangxiSrvCephStatusPkgModelsNode"
-          }
-        ]
-      },
-      "100714LiuChangxiSrvCephStatusPkgModelsNodeBody": {
-        "type": "object",
-        "properties": {
-          "address": {
-            "type": "string",
-            "x-go-field-name": "Address",
-            "x-tag-json": "address"
-          }
-        },
-        "required": [
-          "address"
-        ],
-        "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.NodeBody",
-        "x-id": "100714LiuChangxiSrvCephStatusPkgModelsNodeBody"
-      },
-      "100714LiuChangxiSrvCephStatusPkgModelsOperationTimes": {
-        "type": "object",
-        "properties": {
-          "createdAt": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/GithubComGoCourierSqlxV2DatatypesTimestamp"
-              },
-              {
-                "description": "创建时间",
-                "x-go-field-name": "CreatedAt",
-                "x-tag-json": "createdAt"
-              }
-            ]
-          },
-          "updatedAt": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/GithubComGoCourierSqlxV2DatatypesTimestamp"
-              },
-              {
-                "description": "更新时间",
-                "x-go-field-name": "UpdatedAt",
-                "x-tag-json": "updatedAt"
-              }
-            ]
-          }
-        },
-        "required": [
-          "createdAt",
-          "updatedAt"
-        ],
-        "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.OperationTimes",
-        "x-id": "100714LiuChangxiSrvCephStatusPkgModelsOperationTimes"
-      },
-      "100714LiuChangxiSrvCephStatusPkgModelsOperationTimesWithDeletedAt": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgModelsOperationTimes"
-          },
-          {
-            "type": "object",
-            "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.OperationTimesWithDeletedAt",
-            "x-id": "100714LiuChangxiSrvCephStatusPkgModelsOperationTimesWithDeletedAt"
-          }
-        ]
-      },
-      "100714LiuChangxiSrvCephStatusPkgModelsPrimaryID": {
-        "type": "object",
-        "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.PrimaryID",
-        "x-id": "100714LiuChangxiSrvCephStatusPkgModelsPrimaryID"
-      },
-      "100714LiuChangxiSrvCephStatusPkgModelsRefCephStatusID": {
-        "type": "object",
-        "properties": {
-          "cephStatusID": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgToolsSFID"
-              },
-              {
-                "x-go-field-name": "CephStatusID",
-                "x-tag-json": "cephStatusID"
-              }
-            ]
-          }
-        },
-        "required": [
-          "cephStatusID"
-        ],
-        "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.RefCephStatusID",
-        "x-id": "100714LiuChangxiSrvCephStatusPkgModelsRefCephStatusID"
-      },
-      "100714LiuChangxiSrvCephStatusPkgModelsRefNodeID": {
-        "type": "object",
-        "properties": {
-          "nodeID": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/100714LiuChangxiSrvCephStatusPkgToolsSFID"
-              },
-              {
-                "x-go-field-name": "NodeID",
-                "x-tag-json": "nodeID"
-              }
-            ]
-          }
-        },
-        "required": [
-          "nodeID"
-        ],
-        "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.RefNodeID",
-        "x-id": "100714LiuChangxiSrvCephStatusPkgModelsRefNodeID"
-      },
-      "100714LiuChangxiSrvCephStatusPkgToolsSFID": {
-        "type": "string",
-        "format": "snowflake-id",
-        "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/tools.SFID",
-        "x-id": "100714LiuChangxiSrvCephStatusPkgToolsSFID"
-      },
       "BytesBuffer": {
         "type": "string",
         "format": "binary",
@@ -635,6 +431,240 @@
         ],
         "x-go-vendor-type": "github.com/go-courier/statuserror.StatusErr",
         "x-id": "GithubComGoCourierStatuserrorStatusErr"
+      },
+      "GithubComLiucxerSrvCephStatusPkgMgrsNodeCreateNodeBody": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "x-go-field-name": "Address",
+            "x-tag-json": "address"
+          },
+          "addressList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "x-go-field-name": "AddressList",
+            "x-tag-json": "addressList"
+          }
+        },
+        "required": [
+          "address",
+          "addressList"
+        ],
+        "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/mgrs/node.CreateNodeBody",
+        "x-id": "GithubComLiucxerSrvCephStatusPkgMgrsNodeCreateNodeBody"
+      },
+      "GithubComLiucxerSrvCephStatusPkgModelsCephStatus": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgModelsPrimaryID"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgModelsRefNodeID"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgModelsRefCephStatusID"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgModelsCephStatusBody"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgModelsOperationTimesWithDeletedAt"
+          },
+          {
+            "type": "object",
+            "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.CephStatus",
+            "x-id": "GithubComLiucxerSrvCephStatusPkgModelsCephStatus"
+          }
+        ]
+      },
+      "GithubComLiucxerSrvCephStatusPkgModelsCephStatusBody": {
+        "type": "object",
+        "properties": {
+          "readBytesSec": {
+            "type": "number",
+            "format": "double",
+            "x-go-field-name": "ReadBytesSec",
+            "x-tag-json": "readBytesSec"
+          },
+          "readOpPerSec": {
+            "type": "number",
+            "format": "double",
+            "x-go-field-name": "ReadOpPerSec",
+            "x-tag-json": "readOpPerSec"
+          },
+          "recoveringBytesPerSec": {
+            "type": "number",
+            "format": "double",
+            "x-go-field-name": "RecoveringBytesPerSec",
+            "x-tag-json": "recoveringBytesPerSec"
+          },
+          "writeBytesSec": {
+            "type": "number",
+            "format": "double",
+            "x-go-field-name": "WriteBytesSec",
+            "x-tag-json": "writeBytesSec"
+          },
+          "writeOpPerSec": {
+            "type": "number",
+            "format": "double",
+            "x-go-field-name": "WriteOpPerSec",
+            "x-tag-json": "writeOpPerSec"
+          }
+        },
+        "required": [
+          "readBytesSec",
+          "readOpPerSec",
+          "recoveringBytesPerSec",
+          "writeBytesSec",
+          "writeOpPerSec"
+        ],
+        "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.CephStatusBody",
+        "x-id": "GithubComLiucxerSrvCephStatusPkgModelsCephStatusBody"
+      },
+      "GithubComLiucxerSrvCephStatusPkgModelsNode": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgModelsPrimaryID"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgModelsRefNodeID"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgModelsNodeBody"
+          },
+          {
+            "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgModelsOperationTimesWithDeletedAt"
+          },
+          {
+            "type": "object",
+            "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.Node",
+            "x-id": "GithubComLiucxerSrvCephStatusPkgModelsNode"
+          }
+        ]
+      },
+      "GithubComLiucxerSrvCephStatusPkgModelsNodeBody": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "x-go-field-name": "Address",
+            "x-tag-json": "address"
+          },
+          "addressList": {
+            "type": "string",
+            "x-go-field-name": "AddressList",
+            "x-tag-json": "addressList"
+          }
+        },
+        "required": [
+          "address",
+          "addressList"
+        ],
+        "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.NodeBody",
+        "x-id": "GithubComLiucxerSrvCephStatusPkgModelsNodeBody"
+      },
+      "GithubComLiucxerSrvCephStatusPkgModelsOperationTimes": {
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GithubComGoCourierSqlxV2DatatypesTimestamp"
+              },
+              {
+                "description": "创建时间",
+                "x-go-field-name": "CreatedAt",
+                "x-tag-json": "createdAt"
+              }
+            ]
+          },
+          "updatedAt": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GithubComGoCourierSqlxV2DatatypesTimestamp"
+              },
+              {
+                "description": "更新时间",
+                "x-go-field-name": "UpdatedAt",
+                "x-tag-json": "updatedAt"
+              }
+            ]
+          }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt"
+        ],
+        "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.OperationTimes",
+        "x-id": "GithubComLiucxerSrvCephStatusPkgModelsOperationTimes"
+      },
+      "GithubComLiucxerSrvCephStatusPkgModelsOperationTimesWithDeletedAt": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgModelsOperationTimes"
+          },
+          {
+            "type": "object",
+            "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.OperationTimesWithDeletedAt",
+            "x-id": "GithubComLiucxerSrvCephStatusPkgModelsOperationTimesWithDeletedAt"
+          }
+        ]
+      },
+      "GithubComLiucxerSrvCephStatusPkgModelsPrimaryID": {
+        "type": "object",
+        "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.PrimaryID",
+        "x-id": "GithubComLiucxerSrvCephStatusPkgModelsPrimaryID"
+      },
+      "GithubComLiucxerSrvCephStatusPkgModelsRefCephStatusID": {
+        "type": "object",
+        "properties": {
+          "cephStatusID": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgToolsSFID"
+              },
+              {
+                "x-go-field-name": "CephStatusID",
+                "x-tag-json": "cephStatusID"
+              }
+            ]
+          }
+        },
+        "required": [
+          "cephStatusID"
+        ],
+        "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.RefCephStatusID",
+        "x-id": "GithubComLiucxerSrvCephStatusPkgModelsRefCephStatusID"
+      },
+      "GithubComLiucxerSrvCephStatusPkgModelsRefNodeID": {
+        "type": "object",
+        "properties": {
+          "nodeID": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GithubComLiucxerSrvCephStatusPkgToolsSFID"
+              },
+              {
+                "x-go-field-name": "NodeID",
+                "x-tag-json": "nodeID"
+              }
+            ]
+          }
+        },
+        "required": [
+          "nodeID"
+        ],
+        "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/models.RefNodeID",
+        "x-id": "GithubComLiucxerSrvCephStatusPkgModelsRefNodeID"
+      },
+      "GithubComLiucxerSrvCephStatusPkgToolsSFID": {
+        "type": "string",
+        "format": "snowflake-id",
+        "x-go-vendor-type": "github.com/liucxer/srv-ceph-status/pkg/tools.SFID",
+        "x-id": "GithubComLiucxerSrvCephStatusPkgToolsSFID"
       }
     }
   }
