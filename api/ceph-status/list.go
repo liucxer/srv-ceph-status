@@ -19,5 +19,5 @@ type ListCephStatus struct {
 }
 
 func (req *ListCephStatus) Output(ctx context.Context) (interface{}, error) {
-	return ceph_status.ListCephStatus(ctx, req.ListCephStatusParam)
+	return ceph_status.ListCephStatus(ctx, req.ListCephStatusParam, req.Pager)
 }

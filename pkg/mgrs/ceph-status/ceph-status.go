@@ -2,10 +2,11 @@ package ceph_status
 
 import (
 	"context"
-	"github.com/go-courier/httptransport/__examples__/server/pkg/errors"
+	"github.com/go-courier/sqlx-pg/pgbuilder"
 	"github.com/go-courier/sqlx/v2"
 	"github.com/go-courier/sqlx/v2/builder"
 	"github.com/go-courier/sqlx/v2/datatypes"
+	"github.com/liucxer/srv-ceph-status/pkg/constants/errors"
 	"github.com/liucxer/srv-ceph-status/pkg/models"
 	"github.com/liucxer/srv-ceph-status/pkg/tools"
 	"github.com/liucxer/srv-ceph-status/pkg/utils/db"
@@ -38,7 +39,9 @@ type ListCephStatusParam struct {
 	EndTime   datatypes.Timestamp `name:"endTime,omitempty" in:"query"`
 }
 
-func ListCephStatus(ctx context.Context, listParam ListCephStatusParam) (*[]models.CephStatus, error) {
+type CephStatusList []models.CephStatus
+
+func ListCephStatus(ctx context.Context, listParam ListCephStatusParam, pager pgbuilder.Pager) (CephStatusList, error) {
 	var (
 		err  error
 		list []models.CephStatus
@@ -57,9 +60,12 @@ func ListCephStatus(ctx context.Context, listParam ListCephStatusParam) (*[]mode
 		cond = cond.And(object.FieldCreatedAt().Lte(listParam.EndTime))
 	}
 
-	if list, err = object.List(db.DBExecutorFromContext(ctx), cond); err != nil {
+	additions := builder.Additions{}
+	additions = append(additions, builder.Limit(pager.Size).Offset(pager.Offset))
+	additions = append(additions, builder.OrderBy(builder.DescOrder(object.FieldCreatedAt())))
+	if list, err = object.List(db.DBExecutorFromContext(ctx), cond, additions...); err != nil {
 		return nil, errors.InternalServerError
 	}
 
-	return &list, nil
+	return list, nil
 }

@@ -13,8 +13,7 @@ import (
 	"time"
 )
 
-
-func StartCollectCephStatus(ctx context.Context)  {
+func StartCollectCephStatus(ctx context.Context) {
 	for {
 		time.Sleep(time.Second)
 		node.NodeListMutex.Lock()

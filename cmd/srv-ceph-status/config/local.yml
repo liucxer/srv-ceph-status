@@ -1,3 +1,7 @@
-SRV_CEPH_STATUS__Postgres_Host: "10.0.9.212"
+# SRV_CEPH_STATUS__Postgres_Host: "10.0.9.212"
+# SRV_CEPH_STATUS__Postgres_User: "postgres"
+# SRV_CEPH_STATUS__Postgres_Password: "123456"
+
+SRV_CEPH_STATUS__Postgres_Host: "116.63.139.2"
 SRV_CEPH_STATUS__Postgres_User: "postgres"
-SRV_CEPH_STATUS__Postgres_Password: "123456"
+SRV_CEPH_STATUS__Postgres_Password: "q@@&&4806608"

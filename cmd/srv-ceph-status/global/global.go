@@ -3,9 +3,10 @@ package global
 import (
 	"github.com/go-courier/courier"
 	"github.com/go-courier/sqlx/v2/migration"
-	"github.com/liucxer/confmiddleware"
-	"github.com/liucxer/confmiddleware/appinfo"
 	"github.com/liucxer/confmiddleware/confhttp"
+	"github.com/liucxer/confmiddleware/conflogger"
+	"github.com/liucxer/confmiddleware/confpostgres"
+	"github.com/liucxer/confmiddleware/scaffold/pkg/appinfo"
 	"github.com/liucxer/srv-ceph-status/pkg/models"
 	"github.com/liucxer/srv-ceph-status/pkg/utils/db"
 	"github.com/liucxer/srv-ceph-status/pkg/utils/idgen"
@@ -15,7 +16,7 @@ import (
 var (
 	server = &confhttp.Server{}
 
-	postgres = &confmiddleware.Postgres{
+	postgres = &confpostgres.Postgres{
 		Database: models.DBCephStatus,
 		PoolSize: 50, // 连接池
 	}
@@ -30,14 +31,16 @@ var (
 func init() {
 
 	config := &struct {
+		Log      *conflogger.Log
 		Server   *confhttp.Server
-		Postgres *confmiddleware.Postgres
+		Postgres *confpostgres.Postgres
 	}{
 		Postgres: postgres,
 		Server:   server,
 	}
 
 	App.ConfP(config)
+	confhttp.RegisterCheckerFromStruct(config)
 }
 
 // 通过上下文注入依赖
@@ -53,7 +56,7 @@ func Server() courier.Transport {
 func Migrate() {
 	logrus.SetReportCaller(false)
 	logrus.SetLevel(logrus.DebugLevel)
-	logrus.SetFormatter(&logrus.TextFormatter{})
+	logrus.SetFormatter(&logrus.JSONFormatter{})
 
 	if err := migration.Migrate(postgres, nil); err != nil {
 		panic(err)

@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func StartCollectOSDLog(ctx context.Context)  {
+func StartCollectOSDLog(ctx context.Context) {
 	for {
 		time.Sleep(time.Second)
 		node.NodeListMutex.Lock()

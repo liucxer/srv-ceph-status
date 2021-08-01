@@ -12,8 +12,8 @@ func init() {
 }
 
 type CreateNode struct {
-	httpx.MethodPost `summary:"创建节点" path:""`
-	node.CreateNodeBody  `in:"body"`
+	httpx.MethodPost    `summary:"创建节点" path:""`
+	node.CreateNodeBody `in:"body"`
 }
 
 func (req *CreateNode) Output(ctx context.Context) (interface{}, error) {

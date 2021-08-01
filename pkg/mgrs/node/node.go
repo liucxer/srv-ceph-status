@@ -3,8 +3,8 @@ package node
 import (
 	"context"
 	"encoding/json"
-	"github.com/go-courier/httptransport/__examples__/server/pkg/errors"
 	"github.com/go-courier/sqlx/v2"
+	"github.com/liucxer/srv-ceph-status/pkg/constants/errors"
 	"github.com/liucxer/srv-ceph-status/pkg/models"
 	"github.com/liucxer/srv-ceph-status/pkg/tools"
 	"github.com/liucxer/srv-ceph-status/pkg/utils/db"
@@ -18,7 +18,7 @@ var (
 	NodeListMutex sync.Mutex
 )
 
-func ReFlashNodeList(ctx context.Context)  {
+func ReFlashNodeList(ctx context.Context) {
 	for {
 		time.Sleep(3 * time.Second)
 		nodeList, err := ListNode(ctx)
@@ -37,7 +37,7 @@ func ReFlashNodeList(ctx context.Context)  {
 }
 
 type CreateNodeBody struct {
-	Address     string `db:"f_address" json:"address"`
+	Address     string   `db:"f_address" json:"address"`
 	AddressList []string `db:"f_address_list" json:"addressList"`
 }
 
