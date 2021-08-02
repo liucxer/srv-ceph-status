@@ -5,7 +5,7 @@ import (
 	database_sql_driver "database/sql/driver"
 	errors "errors"
 
-	github_com_go_courier_enumeration "github.com/go-courier/enumeration"
+	github_com_go_courier_enumeration "github.com/liucxer/courier/enumeration"
 )
 
 var InvalidDiskType = errors.New("invalid DiskType type")

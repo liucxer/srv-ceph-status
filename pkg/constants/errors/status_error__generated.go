@@ -1,7 +1,7 @@
 package errors
 
 import (
-	github_com_go_courier_statuserror "github.com/go-courier/statuserror"
+	github_com_go_courier_statuserror "github.com/liucxer/courier/statuserror"
 )
 
 var _ interface {

@@ -2,9 +2,9 @@ package ceph_status
 
 import (
 	"context"
-	"github.com/go-courier/courier"
-	"github.com/go-courier/httptransport/httpx"
-	"github.com/go-courier/sqlx-pg/pgbuilder"
+	"github.com/liucxer/courier/courier"
+	"github.com/liucxer/courier/httptransport/httpx"
+	"github.com/liucxer/courier/sqlx-pg/pgbuilder"
 	ceph_status "github.com/liucxer/srv-ceph-status/pkg/mgrs/ceph-status"
 )
 

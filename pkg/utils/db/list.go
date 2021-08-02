@@ -2,9 +2,9 @@ package db
 
 import (
 	"context"
-	"github.com/go-courier/sqlx-pg/pgbuilder"
-	"github.com/go-courier/sqlx/v2"
-	"github.com/go-courier/sqlx/v2/builder"
+	"github.com/liucxer/courier/sqlx-pg/pgbuilder"
+	"github.com/liucxer/courier/sqlx"
+	"github.com/liucxer/courier/sqlx/builder"
 )
 
 type AdditionsBuilder interface {

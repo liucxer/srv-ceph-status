@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/go-courier/sqlx/v2/datatypes"
+	"github.com/liucxer/courier/sqlx/datatypes"
 	"github.com/liucxer/srv-ceph-status/pkg/constants/types"
 	"github.com/liucxer/srv-ceph-status/pkg/tools"
 )

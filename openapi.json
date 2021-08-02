@@ -8,7 +8,7 @@
     "/ceph-status": {
       "get": {
         "tags": [
-          "github.com/go-courier/httptransport/openapi"
+          "github.com/liucxer/courier/httptransport/openapi"
         ],
         "operationId": "OpenAPI",
         "responses": {
@@ -305,7 +305,7 @@
       "GithubComGoCourierSqlxV2DatatypesTimestamp": {
         "type": "string",
         "format": "date-time",
-        "x-go-vendor-type": "github.com/go-courier/sqlx/v2/datatypes.Timestamp",
+        "x-go-vendor-type": "github.com/liucxer/courier/sqlx/datatypes.Timestamp",
         "x-id": "GithubComGoCourierSqlxV2DatatypesTimestamp"
       },
       "GithubComGoCourierStatuserrorErrorField": {
@@ -338,7 +338,7 @@
           "msg",
           "in"
         ],
-        "x-go-vendor-type": "github.com/go-courier/statuserror.ErrorField",
+        "x-go-vendor-type": "github.com/liucxer/courier/statuserror.ErrorField",
         "x-id": "GithubComGoCourierStatuserrorErrorField"
       },
       "GithubComGoCourierStatuserrorErrorFields": {
@@ -346,7 +346,7 @@
         "items": {
           "$ref": "#/components/schemas/GithubComGoCourierStatuserrorErrorField"
         },
-        "x-go-vendor-type": "github.com/go-courier/statuserror.ErrorFields",
+        "x-go-vendor-type": "github.com/liucxer/courier/statuserror.ErrorFields",
         "x-id": "GithubComGoCourierStatuserrorErrorFields"
       },
       "GithubComGoCourierStatuserrorStatusErr": {
@@ -429,7 +429,7 @@
           "sources",
           "errorFields"
         ],
-        "x-go-vendor-type": "github.com/go-courier/statuserror.StatusErr",
+        "x-go-vendor-type": "github.com/liucxer/courier/statuserror.StatusErr",
         "x-id": "GithubComGoCourierStatuserrorStatusErr"
       },
       "GithubComLiucxerSrvCephStatusPkgMgrsNodeCreateNodeBody": {

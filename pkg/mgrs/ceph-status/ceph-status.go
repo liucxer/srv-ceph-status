@@ -2,10 +2,10 @@ package ceph_status
 
 import (
 	"context"
-	"github.com/go-courier/sqlx-pg/pgbuilder"
-	"github.com/go-courier/sqlx/v2"
-	"github.com/go-courier/sqlx/v2/builder"
-	"github.com/go-courier/sqlx/v2/datatypes"
+	"github.com/liucxer/courier/sqlx-pg/pgbuilder"
+	"github.com/liucxer/courier/sqlx"
+	"github.com/liucxer/courier/sqlx/builder"
+	"github.com/liucxer/courier/sqlx/datatypes"
 	"github.com/liucxer/srv-ceph-status/pkg/constants/errors"
 	"github.com/liucxer/srv-ceph-status/pkg/models"
 	"github.com/liucxer/srv-ceph-status/pkg/tools"

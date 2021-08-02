@@ -3,8 +3,8 @@ package idgen
 import (
 	"time"
 
-	"github.com/go-courier/snowflakeid"
-	"github.com/go-courier/snowflakeid/workeridutil"
+	"github.com/liucxer/courier/snowflakeid"
+	"github.com/liucxer/courier/snowflakeid/workeridutil"
 )
 
 var startTime, _ = time.Parse(time.RFC3339, "2020-01-01T00:00:00Z")

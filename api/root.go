@@ -1,9 +1,9 @@
 package api
 
 import (
-	"github.com/go-courier/courier"
-	"github.com/go-courier/httptransport"
-	"github.com/go-courier/httptransport/openapi"
+	"github.com/liucxer/courier/courier"
+	"github.com/liucxer/courier/httptransport"
+	"github.com/liucxer/courier/httptransport/openapi"
 	"github.com/liucxer/confmiddleware/confhttp"
 	ceph_status "github.com/liucxer/srv-ceph-status/api/ceph-status"
 	"github.com/liucxer/srv-ceph-status/api/node"

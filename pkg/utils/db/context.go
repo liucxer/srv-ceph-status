@@ -3,7 +3,7 @@ package db
 import (
 	"context"
 
-	"github.com/go-courier/sqlx/v2"
+	"github.com/liucxer/courier/sqlx"
 )
 
 type contextKeyDBExecutor int

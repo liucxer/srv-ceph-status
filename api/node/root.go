@@ -1,8 +1,8 @@
 package node
 
 import (
-	"github.com/go-courier/courier"
-	"github.com/go-courier/httptransport"
+	"github.com/liucxer/courier/courier"
+	"github.com/liucxer/courier/httptransport"
 )
 
 var RouterRootNode = courier.NewRouter(httptransport.Group("/node"))

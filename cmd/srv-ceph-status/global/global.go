@@ -1,8 +1,8 @@
 package global
 
 import (
-	"github.com/go-courier/courier"
-	"github.com/go-courier/sqlx/v2/migration"
+	"github.com/liucxer/courier/courier"
+	"github.com/liucxer/courier/sqlx/migration"
 	"github.com/liucxer/confmiddleware/confhttp"
 	"github.com/liucxer/confmiddleware/conflogger"
 	"github.com/liucxer/confmiddleware/confpostgres"

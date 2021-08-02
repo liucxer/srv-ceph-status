@@ -2,8 +2,8 @@ package node
 
 import (
 	"context"
-	"github.com/go-courier/courier"
-	"github.com/go-courier/httptransport/httpx"
+	"github.com/liucxer/courier/courier"
+	"github.com/liucxer/courier/httptransport/httpx"
 	"github.com/liucxer/srv-ceph-status/pkg/mgrs/node"
 )
 

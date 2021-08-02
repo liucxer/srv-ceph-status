@@ -1,8 +1,8 @@
 package models
 
 import (
-	"github.com/go-courier/sqlx/v2"
-	"github.com/go-courier/sqlx/v2/datatypes"
+	"github.com/liucxer/courier/sqlx"
+	"github.com/liucxer/courier/sqlx/datatypes"
 	"time"
 )
 

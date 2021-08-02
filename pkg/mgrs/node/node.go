@@ -3,7 +3,7 @@ package node
 import (
 	"context"
 	"encoding/json"
-	"github.com/go-courier/sqlx/v2"
+	"github.com/liucxer/courier/sqlx"
 	"github.com/liucxer/srv-ceph-status/pkg/constants/errors"
 	"github.com/liucxer/srv-ceph-status/pkg/models"
 	"github.com/liucxer/srv-ceph-status/pkg/tools"

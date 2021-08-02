@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"github.com/go-courier/courier"
+	"github.com/liucxer/courier/courier"
 	"github.com/liucxer/srv-ceph-status/api"
 	"github.com/liucxer/srv-ceph-status/cmd/srv-ceph-status/global"
 	ceph_status "github.com/liucxer/srv-ceph-status/pkg/mgrs/ceph-status"

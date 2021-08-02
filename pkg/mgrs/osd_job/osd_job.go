@@ -2,8 +2,8 @@ package osd_job
 
 import (
 	"context"
-	"github.com/go-courier/sqlx/v2"
-	"github.com/go-courier/sqlx/v2/builder"
+	"github.com/liucxer/courier/sqlx"
+	"github.com/liucxer/courier/sqlx/builder"
 	"github.com/liucxer/srv-ceph-status/pkg/constants/types"
 	"github.com/liucxer/srv-ceph-status/pkg/models"
 	"github.com/liucxer/srv-ceph-status/pkg/tools"
